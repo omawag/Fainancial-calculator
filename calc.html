@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Financial Calculator</title>
+    <link rel="stylesheet" href="calc.css">
+    <script type="calc.js" src="calc.js"></script>
+</head>
+
+<body>
+    <h1>Financial Calculator</h1>
+    <div id="calculator">
+
+        <label for="vendor_bills">Vendor/Bills:</label>
+        <input type="number" id="vendor_bills" placeholder="0">
+
+        <label for="media_ad">Media/Ad:</label>
+        <input type="number" id="media_ad" placeholder="0">
+
+        <label for="corporation_spend">Corporation spend:</label>
+        <input type="number" id="corporation_spend" placeholder="0">
+
+        <label for="team_project">Team project:</label>
+        <input onkeyup="calculate()" type="number" id="team_project" placeholder="0">
+        <div id="result"></div>
+        <div id="other"></div>
+    </div>
+
+    <div id="calculatorbtn">
+        <button onclick="display_stripe()">Stripe</button>
+        <button onclick="display_Amex()">amex</button>
+        <button onclick="display_brex()">brex</button>
+
+    </div>
+    <script>
+        let vendorBills;
+        let mediaAd;
+        let corporationSpend;
+        let teamProject;
+        let sum;
+        let brex;
+        let stripe;
+        let amex;
+        let unlimitedRewards;
+        let lifetimeRewards;
+
+
+
+        function read() {
+            vendorBills = parseFloat(document.getElementById("vendor_bills").value) ? parseFloat(document.getElementById("vendor_bills").value) : 0;
+            mediaAd = parseFloat(document.getElementById("media_ad").value) ? parseFloat(document.getElementById("media_ad").value) : 0;
+            corporationSpend = parseFloat(document.getElementById("corporation_spend").value) ? parseFloat(document.getElementById("corporation_spend").value) : 0;
+            teamProject = parseFloat(document.getElementById("team_project").value) ? parseFloat(document.getElementById("team_project").value) : 0;
+            sum = vendorBills + mediaAd + corporationSpend + teamProject;
+        }
+
+        function calculate() {
+            read();
+
+            unlimitedRewards = sum * 1.1;
+            lifetimeRewards = sum * 1.2;
+            brex = sum * 0.3;
+            stripe = sum * 2.9;
+            amex = sum * 1.3;
+            display();
+        }
+
+
+        function display() {
+            document.getElementById("result").innerHTML =
+                "Unlimited Rewards: " + unlimitedRewards.toFixed(2) + "<br>"
+                + "Lifetime Rewards: " + lifetimeRewards.toFixed(2);
+
+        }
+        function display_brex() {
+
+            document.getElementById("other").innerHTML = "Brex: " + brex.toFixed(2);
+
+        }
+
+        function display_stripe() {
+
+            document.getElementById("other").innerHTML = "Stripe: " + stripe.toFixed(2);
+        }
+
+
+        function display_Amex() {
+
+            document.getElementById("other").innerHTML = "Amex: " + amex.toFixed(2);
+
+
+        }
+
+    </script>
+</body>
+
+</html>
